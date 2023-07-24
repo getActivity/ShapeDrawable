@@ -155,6 +155,14 @@ setLineGravity(int lineGravity)
 intoBackground(View view)
 ```
 
+#### 框架亮点
+
+* 相比系统提供的 GradientDrawable 更强大，ShapeDrawable 支持设置阴影（颜色、大小、偏移量）
+
+* 相比系统提供的 GradientDrawable 更强大，ShapeDrawable 支持单独给边框设置渐变色（渐变色色值、渐变色方向）
+
+* 相比系统提供的 GradientDrawable 更强大，ShapeDrawable 支持单独给线条设置方向（top、bottom、left、right、start、end 方向都支持）
+
 #### 作者的其他开源项目
 
 * 安卓技术中台：[AndroidProject](https://github.com/getActivity/AndroidProject) ![](https://img.shields.io/github/stars/getActivity/AndroidProject.svg) ![](https://img.shields.io/github/forks/getActivity/AndroidProject.svg)
