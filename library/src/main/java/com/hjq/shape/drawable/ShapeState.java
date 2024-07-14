@@ -18,8 +18,7 @@ public class ShapeState extends Drawable.ConstantState {
     public int shapeType = ShapeType.RECTANGLE;
     @ShapeGradientTypeLimit
     public int solidGradientType = ShapeGradientType.LINEAR_GRADIENT;
-    @ShapeGradientOrientationLimit
-    public int solidGradientOrientation = ShapeGradientOrientation.TOP_TO_BOTTOM;
+    public ShapeGradientOrientation solidGradientOrientation = ShapeGradientOrientation.TOP_TO_BOTTOM;
     public int[] solidColors;
     public int[] strokeColors;
     public int[] tempSolidColors; // no need to copy
@@ -29,8 +28,7 @@ public class ShapeState extends Drawable.ConstantState {
     public boolean hasStrokeColor;
     public int solidColor;
     public int strokeSize = -1;   // if >= 0 use stroking.
-    @ShapeGradientOrientationLimit
-    public int strokeGradientOrientation = ShapeGradientOrientation.TOP_TO_BOTTOM;
+    public ShapeGradientOrientation strokeGradientOrientation = ShapeGradientOrientation.TOP_TO_BOTTOM;
     public int strokeColor;
     public float strokeDashSize;
     public float strokeDashGap;

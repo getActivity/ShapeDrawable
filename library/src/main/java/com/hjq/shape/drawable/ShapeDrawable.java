@@ -52,6 +52,9 @@ public class ShapeDrawable extends Drawable {
     private Path mRingPath;
     private boolean mPathDirty = true;
 
+    /** 当前布局方向 */
+    private int mLayoutDirection;
+
     public ShapeDrawable() {
         this(new ShapeState());
     }
@@ -194,7 +197,7 @@ public class ShapeDrawable extends Drawable {
     /**
      * 设置填充色渐变方向
      */
-    public ShapeDrawable setSolidGradientOrientation(@ShapeGradientOrientationLimit int orientation) {
+    public ShapeDrawable setSolidGradientOrientation(ShapeGradientOrientation orientation) {
         mShapeState.solidGradientOrientation = orientation;
         mRectDirty = true;
         invalidateSelf();
@@ -259,7 +262,7 @@ public class ShapeDrawable extends Drawable {
     /**
      * 设置边框色渐变方向
      */
-    public ShapeDrawable setStrokeGradientOrientation(@ShapeGradientOrientationLimit int orientation) {
+    public ShapeDrawable setStrokeGradientOrientation(ShapeGradientOrientation orientation) {
         mShapeState.strokeGradientOrientation = orientation;
         mRectDirty = true;
         invalidateSelf();
@@ -681,6 +684,7 @@ public class ShapeDrawable extends Drawable {
 
     @Override
     public boolean onLayoutDirectionChanged(int layoutDirection) {
+        mLayoutDirection = layoutDirection;
         return mShapeState.shapeType == ShapeType.LINE;
     }
 
@@ -862,7 +866,7 @@ public class ShapeDrawable extends Drawable {
                 case ShapeGradientType.LINEAR_GRADIENT: {
                     final float level = st.useLevel ? getLevel() / 10000f : 1f;
                     float[] coordinate = ShapeDrawableUtils.computeLinearGradientCoordinate(
-                            mRect, level, st.solidGradientOrientation);
+                        mLayoutDirection, mRect, level, st.solidGradientOrientation);
                     mSolidPaint.setShader(new LinearGradient(coordinate[0], coordinate[1], coordinate[2], coordinate[3],
                             st.solidColors, st.positions, Shader.TileMode.CLAMP));
                     break;
@@ -930,7 +934,7 @@ public class ShapeDrawable extends Drawable {
         if (st.strokeColors != null) {
             final float level = st.useLevel ? getLevel() / 10000f : 1f;
             float[] coordinate = ShapeDrawableUtils.computeLinearGradientCoordinate(
-                    mRect, level, st.strokeGradientOrientation);
+                    mLayoutDirection, mRect, level, st.strokeGradientOrientation);
             mStrokePaint.setShader(new LinearGradient(coordinate[0], coordinate[1], coordinate[2], coordinate[3],
                     st.strokeColors, st.positions, Shader.TileMode.CLAMP));
 

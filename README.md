@@ -2,7 +2,7 @@
 
 * 项目地址：[Github](https://github.com/getActivity/ShapeDrawable)
 
-* 可以扫码下载 Demo 进行演示或者测试，如果扫码下载不了的，[点击此处可直接下载](https://github.com/getActivity/ShapeDrawable/releases/download/3.0/ShapeDrawable.apk)
+* 可以扫码下载 Demo 进行演示或者测试，如果扫码下载不了的，[点击此处可直接下载](https://github.com/getActivity/ShapeDrawable/releases/download/3.2/ShapeDrawable.apk)
 
 ![](picture/demo_code.png)
 
@@ -45,7 +45,7 @@ android {
 
 dependencies {
     // ShapeDrawable：https://github.com/getActivity/ShapeDrawable
-    implementation 'com.github.getActivity:ShapeDrawable:3.0'
+    implementation 'com.github.getActivity:ShapeDrawable:3.2'
 }
 ```
 
@@ -80,7 +80,7 @@ setSolidColor(@ColorInt int... colors)
 setSolidGradientType(@ShapeGradientTypeLimit int type)
 
 // 设置填充色渐变方向
-setSolidGradientOrientation(@ShapeGradientOrientationLimit int orientation)
+setSolidGradientOrientation(ShapeGradientOrientation orientation)
 
 // 设置填充色渐变中心 X 点坐标的相对位置（默认值为 0.5）
 setSolidGradientCenterX(float centerX)
@@ -100,7 +100,7 @@ setStrokeColor(@ColorInt int startColor, @ColorInt int centerColor, @ColorInt in
 setStrokeColor(@ColorInt int... colors)
 
 // 设置边框色渐变方向
-setStrokeGradientOrientation(@ShapeGradientOrientationLimit int orientation)
+setStrokeGradientOrientation(ShapeGradientOrientation orientation)
 
 // 设置边框大小
 setStrokeSize(int size)
@@ -214,18 +214,6 @@ intoBackground(View view)
 ![](https://raw.githubusercontent.com/getActivity/Donate/master/picture/pay_ali.png) ![](https://raw.githubusercontent.com/getActivity/Donate/master/picture/pay_wechat.png)
 
 #### [点击查看捐赠列表](https://github.com/getActivity/Donate)
-
-#### 广告区
-
-* 我现在任腾讯云服务器推广大使，大家如果有购买服务器的需求，可以通过下面的链接购买
-
-[![](https://upload-dianshi-1255598498.file.myqcloud.com/upload/nodir/345X200-9ae456f58874df499adf7c331c02cb0fed12b81d.jpg)](https://curl.qcloud.com/A6cYskvv)
-
-[【腾讯云】云服务器、云数据库、COS、CDN、短信等云产品特惠热卖中](https://curl.qcloud.com/A6cYskvv)
-
-[![](https://upload-dianshi-1255598498.file.myqcloud.com/345-200-b28f7dee9552f4241ea6a543f15a9798049701d4.jpg)](https://curl.qcloud.com/up4fQsdn)
-
-[【腾讯云】中小企业福利专场，多款刚需产品，满足企业通用场景需求](https://curl.qcloud.com/up4fQsdn)
 
 ## License
 

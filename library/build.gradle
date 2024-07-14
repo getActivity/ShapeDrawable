@@ -5,13 +5,13 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        versionCode 30
-        versionName "3.0"
+        versionCode 32
+        versionName "3.2"
     }
 
-    android.libraryVariants.all { variant ->
+    android.libraryVariants.configureEach { variant ->
         // aar 输出文件名配置
-        variant.outputs.all { output ->
+        variant.outputs.configureEach { output ->
             outputFileName = "${rootProject.name}-${android.defaultConfig.versionName}.aar"
         }
     }

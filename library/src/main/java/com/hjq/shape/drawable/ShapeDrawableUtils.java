@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.IntRange;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 /**
  *    author : Android 轮子哥
@@ -24,38 +25,62 @@ final class ShapeDrawableUtils {
       }
    }
 
-   static float[] computeLinearGradientCoordinate(RectF r, float level, int orientation) {
+   static float[] computeLinearGradientCoordinate(int layoutDirection, RectF r, float level, ShapeGradientOrientation orientation) {
       float x0, x1, y0, y1;
       switch (orientation) {
-         case ShapeGradientOrientation.TOP_TO_BOTTOM:
+         case START_TO_END:
+            return computeLinearGradientCoordinate(layoutDirection, r, level,
+                layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                    ShapeGradientOrientation.RIGHT_TO_LEFT : ShapeGradientOrientation.LEFT_TO_RIGHT);
+         case END_TO_START:
+             return computeLinearGradientCoordinate(layoutDirection, r, level,
+                 layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                    ShapeGradientOrientation.LEFT_TO_RIGHT : ShapeGradientOrientation.RIGHT_TO_LEFT);
+         case TOP_START_TO_BOTTOM_END:
+             return computeLinearGradientCoordinate(layoutDirection, r, level,
+                  layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                      ShapeGradientOrientation.TOP_RIGHT_TO_BOTTOM_LEFT : ShapeGradientOrientation.TOP_LEFT_TO_BOTTOM_RIGHT);
+         case TOP_END_TO_BOTTOM_START:
+             return computeLinearGradientCoordinate(layoutDirection, r, level,
+                  layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                      ShapeGradientOrientation.TOP_LEFT_TO_BOTTOM_RIGHT : ShapeGradientOrientation.TOP_RIGHT_TO_BOTTOM_LEFT);
+         case BOTTOM_START_TO_TOP_END:
+             return computeLinearGradientCoordinate(layoutDirection, r, level,
+                  layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                      ShapeGradientOrientation.BOTTOM_RIGHT_TO_TOP_LEFT : ShapeGradientOrientation.BOTTOM_LEFT_TO_TOP_RIGHT);
+         case BOTTOM_END_TO_TOP_START:
+             return computeLinearGradientCoordinate(layoutDirection, r, level,
+                  layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                      ShapeGradientOrientation.BOTTOM_LEFT_TO_TOP_RIGHT : ShapeGradientOrientation.BOTTOM_RIGHT_TO_TOP_LEFT);
+         case TOP_TO_BOTTOM:
             x0 = r.left;            y0 = r.top;
             x1 = x0;                y1 = level * r.bottom;
             break;
-         case ShapeGradientOrientation.TOP_RIGHT_TO_BOTTOM_LEFT:
+         case TOP_RIGHT_TO_BOTTOM_LEFT:
             x0 = r.right;           y0 = r.top;
             x1 = level * r.left;    y1 = level * r.bottom;
             break;
-         case ShapeGradientOrientation.RIGHT_TO_LEFT:
+         case RIGHT_TO_LEFT:
             x0 = r.right;           y0 = r.top;
             x1 = level * r.left;    y1 = y0;
             break;
-         case ShapeGradientOrientation.BOTTOM_RIGHT_TO_TOP_LEFT:
+         case BOTTOM_RIGHT_TO_TOP_LEFT:
             x0 = r.right;           y0 = r.bottom;
             x1 = level * r.left;    y1 = level * r.top;
             break;
-         case ShapeGradientOrientation.BOTTOM_TO_TOP:
+         case BOTTOM_TO_TOP:
             x0 = r.left;            y0 = r.bottom;
             x1 = x0;                y1 = level * r.top;
             break;
-         case ShapeGradientOrientation.BOTTOM_LEFT_TO_TOP_RIGHT:
+         case BOTTOM_LEFT_TO_TOP_RIGHT:
             x0 = r.left;            y0 = r.bottom;
             x1 = level * r.right;   y1 = level * r.top;
             break;
-         case ShapeGradientOrientation.LEFT_TO_RIGHT:
+         case LEFT_TO_RIGHT:
             x0 = r.left;            y0 = r.top;
             x1 = level * r.right;   y1 = y0;
             break;
-         case ShapeGradientOrientation.TOP_LEFT_TO_BOTTOM_RIGHT:
+         case TOP_LEFT_TO_BOTTOM_RIGHT:
          default:
             x0 = r.left;            y0 = r.top;
             x1 = level * r.right;   y1 = level * r.bottom;

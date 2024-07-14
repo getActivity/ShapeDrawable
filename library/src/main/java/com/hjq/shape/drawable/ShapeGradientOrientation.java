@@ -6,31 +6,37 @@ package com.hjq.shape.drawable;
  *    time   : 2021/08/15
  *    desc   : Shape 渐变方向
  */
-public final class ShapeGradientOrientation {
+public enum ShapeGradientOrientation {
 
     /** 从左到右绘制渐变（0 度） */
-    public static final int LEFT_TO_RIGHT = 0;
+    LEFT_TO_RIGHT,
+    START_TO_END,
 
     /** 从右到左绘制渐变（180 度） */
-    public static final int RIGHT_TO_LEFT = 180;
+    RIGHT_TO_LEFT,
+    END_TO_START,
 
     /** 从下到上绘制渐变（90 度） */
-    public static final int BOTTOM_TO_TOP = 90;
+    BOTTOM_TO_TOP,
 
     /** 从上到下绘制渐变（270 度） */
-    public static final int TOP_TO_BOTTOM = 270;
+    TOP_TO_BOTTOM,
 
     // ------------------------------ //
 
     /** 从左上角到右下角绘制渐变（315 度） */
-    public static final int TOP_LEFT_TO_BOTTOM_RIGHT = 315;
-
-    /** 从左下角到右上角绘制渐变（45 度） */
-    public static final int BOTTOM_LEFT_TO_TOP_RIGHT = 45;
+    TOP_LEFT_TO_BOTTOM_RIGHT,
+    TOP_START_TO_BOTTOM_END,
 
     /** 从右上角到左下角绘制渐变（225 度） */
-    public static final int TOP_RIGHT_TO_BOTTOM_LEFT = 225;
+    TOP_RIGHT_TO_BOTTOM_LEFT,
+    TOP_END_TO_BOTTOM_START,
+
+    /** 从左下角到右上角绘制渐变（45 度） */
+    BOTTOM_LEFT_TO_TOP_RIGHT,
+    BOTTOM_START_TO_TOP_END,
 
     /** 从右下角到左上角绘制渐变（135 度） */
-    public static final int BOTTOM_RIGHT_TO_TOP_LEFT = 135;
+    BOTTOM_RIGHT_TO_TOP_LEFT,
+    BOTTOM_END_TO_TOP_START
 }
