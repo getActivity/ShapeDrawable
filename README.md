@@ -2,7 +2,7 @@
 
 * 项目地址：[Github](https://github.com/getActivity/ShapeDrawable)
 
-* 可以扫码下载 Demo 进行演示或者测试，如果扫码下载不了的，[点击此处可直接下载](https://github.com/getActivity/ShapeDrawable/releases/download/3.2/ShapeDrawable.apk)
+* 可以扫码下载 Demo 进行演示或者测试，如果扫码下载不了的，[点击此处可直接下载](https://github.com/getActivity/ShapeDrawable/releases/download/3.3/ShapeDrawable.apk)
 
 ![](picture/demo_code.png)
 
@@ -45,7 +45,7 @@ android {
 
 dependencies {
     // ShapeDrawable：https://github.com/getActivity/ShapeDrawable
-    implementation 'com.github.getActivity:ShapeDrawable:3.2'
+    implementation 'com.github.getActivity:ShapeDrawable:3.3'
 }
 ```
 
