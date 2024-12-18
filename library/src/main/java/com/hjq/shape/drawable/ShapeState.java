@@ -75,6 +75,7 @@ public class ShapeState extends Drawable.ConstantState {
         hasStrokeColor = state.hasStrokeColor;
         solidColor = state.solidColor;
         strokeSize = state.strokeSize;
+        strokeGradientOrientation = state.strokeGradientOrientation;
         strokeColor = state.strokeColor;
         strokeDashSize = state.strokeDashSize;
         strokeDashGap = state.strokeDashGap;
