@@ -1,6 +1,9 @@
 package com.hjq.shape.drawable;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,8 +20,10 @@ import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Build.VERSION_CODES;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.View;
 
@@ -611,7 +616,7 @@ public class ShapeDrawable extends Drawable {
                 int lineGravity;
                 Callback callback = getCallback();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && callback instanceof View) {
-                    int layoutDirection = ((View) callback).getContext().getResources().getConfiguration().getLayoutDirection();
+                    int layoutDirection = getLayoutDirection(((View) callback));
                     lineGravity = Gravity.getAbsoluteGravity(st.lineGravity, layoutDirection);
                 } else {
                     lineGravity = st.lineGravity;
@@ -995,5 +1000,28 @@ public class ShapeDrawable extends Drawable {
             setStrokeDashSize(state.strokeDashSize);
             setStrokeDashGap(state.strokeDashGap);
         }
+    }
+
+    /**
+     * 从上下文中获取当前布局方向
+     */
+    @RequiresApi(api = VERSION_CODES.JELLY_BEAN_MR1)
+    private static int getLayoutDirection(View view) {
+        int layoutDirection;
+        Context context = view.getContext();
+        Resources resources = null;
+        Configuration configuration = null;
+        if (context != null) {
+            resources = context.getResources();
+        }
+        if (resources != null) {
+            configuration = resources.getConfiguration();
+        }
+        if (configuration != null) {
+            layoutDirection = configuration.getLayoutDirection();
+        } else {
+            layoutDirection = View.LAYOUT_DIRECTION_LTR;
+        }
+        return layoutDirection;
     }
 }
