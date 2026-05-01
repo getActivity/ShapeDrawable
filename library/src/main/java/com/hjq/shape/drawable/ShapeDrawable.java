@@ -16,14 +16,14 @@ import android.graphics.PixelFormat;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.Shader.TileMode;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Build.VERSION_CODES;
 import android.support.annotation.ColorInt;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 
@@ -182,7 +182,7 @@ public class ShapeDrawable extends Drawable {
             mSolidPaint.setColor(0);
         } else if (colors.length == 1) {
             mSolidPaint.setColor(colors[0]);
-            mSolidPaint.clearShadowLayer();
+            mSolidPaint.setMaskFilter(null);
         }
         mRectDirty = true;
         invalidateSelf();
@@ -257,7 +257,7 @@ public class ShapeDrawable extends Drawable {
             mStrokePaint.setColor(0);
         } else if (colors.length == 1) {
             mStrokePaint.setColor(colors[0]);
-            mStrokePaint.clearShadowLayer();
+            mStrokePaint.setMaskFilter(null);
         }
         mRectDirty = true;
         invalidateSelf();
@@ -436,12 +436,10 @@ public class ShapeDrawable extends Drawable {
             view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         view.setBackground(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            // 布局方向
-            int layoutDirection = view.getLayoutDirection();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setLayoutDirection(layoutDirection);
-            }
+        // 布局方向
+        int layoutDirection = view.getLayoutDirection();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            setLayoutDirection(layoutDirection);
         }
     }
 
@@ -490,7 +488,7 @@ public class ShapeDrawable extends Drawable {
             mLayerPaint.setColorFilter(mColorFilter);
 
             float rad = mStrokePaint.getStrokeWidth();
-            ShapeDrawableUtils.saveCanvasLayer(canvas, mRect.left - rad, mRect.top - rad,
+            saveCanvasLayer(canvas, mRect.left - rad, mRect.top - rad,
                     mRect.right + rad, mRect.bottom + rad, mLayerPaint);
 
             // don't perform the filter in our individual paints
@@ -529,8 +527,8 @@ public class ShapeDrawable extends Drawable {
 
             int shadowColor = mShapeState.shadowColor;
             // 如果阴影颜色是非透明的，则需要设置一点透明度进去，否则会显示不出来
-            if (ShapeDrawableUtils.setColorAlphaComponent(mShapeState.shadowColor, 255) == mShapeState.shadowColor) {
-                shadowColor = ShapeDrawableUtils.setColorAlphaComponent(mShapeState.shadowColor, 254);
+            if (setColorAlphaComponent(mShapeState.shadowColor, 255) == mShapeState.shadowColor) {
+                shadowColor = setColorAlphaComponent(mShapeState.shadowColor, 254);
             }
 
              mShadowPaint.setColor(shadowColor);
@@ -546,7 +544,7 @@ public class ShapeDrawable extends Drawable {
 
         } else {
             if (mShadowPaint != null) {
-                mShadowPaint.clearShadowLayer();
+                mShadowPaint.setMaskFilter(null);
             }
         }
 
@@ -613,14 +611,7 @@ public class ShapeDrawable extends Drawable {
                 float startY;
                 float stopX;
                 float stopY;
-                int lineGravity;
-                Callback callback = getCallback();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && callback instanceof View) {
-                    int layoutDirection = getLayoutDirection(((View) callback));
-                    lineGravity = Gravity.getAbsoluteGravity(st.lineGravity, layoutDirection);
-                } else {
-                    lineGravity = st.lineGravity;
-                }
+                int lineGravity = Gravity.getAbsoluteGravity(st.lineGravity, mLayoutDirection);
 
                 switch (lineGravity) {
                     case Gravity.LEFT:
@@ -767,11 +758,27 @@ public class ShapeDrawable extends Drawable {
         float x = bounds.width() / 2.0f;
         float y = bounds.height() / 2.0f;
 
-        float thickness = shapeState.ringThicknessSize != -1 ?
-                shapeState.ringThicknessSize : bounds.width() / shapeState.ringThicknessRatio;
+        float thickness;
+        if (shapeState.ringThicknessSize != -1) {
+            thickness = shapeState.ringThicknessSize;
+        } else {
+            float ratio = shapeState.ringThicknessRatio;
+            if (ratio <= 0) {
+                ratio = 9f;
+            }
+            thickness = bounds.width() / ratio;
+        }
         // inner radius
-        float radius = shapeState.ringInnerRadiusSize != -1 ?
-                shapeState.ringInnerRadiusSize : bounds.width() / shapeState.ringInnerRadiusRatio;
+        float radius;
+        if (shapeState.ringInnerRadiusSize != -1) {
+            radius = shapeState.ringInnerRadiusSize;
+        } else {
+            float ratio = shapeState.ringInnerRadiusRatio;
+            if (ratio <= 0) {
+                ratio = 3f;
+            }
+            radius = bounds.width() / ratio;
+        }
 
         RectF innerBounds = new RectF(bounds);
         innerBounds.inset(x - radius, y - radius);
@@ -826,23 +833,23 @@ public class ShapeDrawable extends Drawable {
 
         final ShapeState st = mShapeState;
 
-        float let = bounds.left + inset + mShapeState.shadowSize;
+        float left = bounds.left + inset + mShapeState.shadowSize;
         float top = bounds.top + inset + mShapeState.shadowSize;
         float right = bounds.right - inset - mShapeState.shadowSize;
         float bottom = bounds.bottom - inset - mShapeState.shadowSize;
 
-        mRect.set(let, top, right, bottom);
+        mRect.set(left, top, right, bottom);
 
-        float shadowLet;
+        float shadowLeft;
         float shadowTop;
         float shadowRight;
         float shadowBottom;
 
         if (mShapeState.shadowOffsetX > 0) {
-            shadowLet = let + mShapeState.shadowOffsetX;
+            shadowLeft = left + mShapeState.shadowOffsetX;
             shadowRight = right;
         } else {
-            shadowLet = let;
+            shadowLeft = left;
             shadowRight = right + mShapeState.shadowOffsetX;
         }
 
@@ -854,26 +861,28 @@ public class ShapeDrawable extends Drawable {
             shadowBottom = bottom + mShapeState.shadowOffsetY;
         }
 
-        mShadowRect.set(shadowLet, shadowTop, shadowRight, shadowBottom);
+        mShadowRect.set(shadowLeft, shadowTop, shadowRight, shadowBottom);
 
-        if (st.solidColors == null) {
+        int[] solidColors = st.solidColors;
+        if (solidColors == null) {
             mSolidPaint.setShader(null);
         }
 
-        if (st.strokeColors == null) {
+        int[] strokeColors = st.strokeColors;
+        if (strokeColors == null) {
             mStrokePaint.setShader(null);
         }
 
-        if (st.solidColors != null) {
+        if (solidColors != null) {
             RectF rect = mRect;
 
             switch (st.solidGradientType) {
                 case ShapeGradientType.LINEAR_GRADIENT: {
                     final float level = st.useLevel ? getLevel() / 10000f : 1f;
-                    float[] coordinate = ShapeDrawableUtils.computeLinearGradientCoordinate(
+                    float[] coordinate = computeLinearGradientCoordinate(
                         mLayoutDirection, mRect, level, st.solidGradientOrientation);
                     mSolidPaint.setShader(new LinearGradient(coordinate[0], coordinate[1], coordinate[2], coordinate[3],
-                            st.solidColors, st.positions, Shader.TileMode.CLAMP));
+                        solidColors, st.positions, TileMode.CLAMP));
                     break;
                 }
                 case ShapeGradientType.RADIAL_GRADIENT: {
@@ -885,8 +894,8 @@ public class ShapeDrawable extends Drawable {
                     final float level = st.useLevel ? getLevel() / 10000f : 1f;
 
                     mSolidPaint.setShader(new RadialGradient(x0, y0,
-                            level * st.gradientRadius, st.solidColors, null,
-                            Shader.TileMode.CLAMP));
+                            level * st.gradientRadius, solidColors, null,
+                            TileMode.CLAMP));
                     break;
                 }
                 case ShapeGradientType.SWEEP_GRADIENT: {
@@ -896,18 +905,17 @@ public class ShapeDrawable extends Drawable {
                     x0 = rect.left + (rect.right - rect.left) * st.solidCenterX;
                     y0 = rect.top + (rect.bottom - rect.top) * st.solidCenterY;
 
-                    int[] tempSolidColors = st.solidColors;
+                    int[] tempSolidColors = solidColors;
                     float[] tempSolidPositions = null;
 
                     if (st.useLevel) {
                         tempSolidColors = st.tempSolidColors;
-                        final int length = st.solidColors.length;
+                        final int length = solidColors.length;
                         if (tempSolidColors == null || tempSolidColors.length != length + 1) {
                             tempSolidColors = st.tempSolidColors = new int[length + 1];
                         }
-                        System.arraycopy(st.solidColors, 0, tempSolidColors, 0, length);
-                        tempSolidColors[length] = st.solidColors[length - 1];
-
+                        System.arraycopy(solidColors, 0, tempSolidColors, 0, length);
+                        tempSolidColors[length] = solidColors[length - 1];
 
                         tempSolidPositions = st.tempSolidPositions;
                         final float fraction = 1f / (length - 1);
@@ -936,12 +944,12 @@ public class ShapeDrawable extends Drawable {
             }
         }
 
-        if (st.strokeColors != null) {
+        if (strokeColors != null) {
             final float level = st.useLevel ? getLevel() / 10000f : 1f;
-            float[] coordinate = ShapeDrawableUtils.computeLinearGradientCoordinate(
-                    mLayoutDirection, mRect, level, st.strokeGradientOrientation);
+            float[] coordinate = computeLinearGradientCoordinate(
+                mLayoutDirection, mRect, level, st.strokeGradientOrientation);
             mStrokePaint.setShader(new LinearGradient(coordinate[0], coordinate[1], coordinate[2], coordinate[3],
-                    st.strokeColors, st.positions, Shader.TileMode.CLAMP));
+                strokeColors, st.positions, TileMode.CLAMP));
 
             if (!st.hasStrokeColor) {
                 mStrokePaint.setColor(Color.BLACK);
@@ -1003,25 +1011,98 @@ public class ShapeDrawable extends Drawable {
     }
 
     /**
-     * 从上下文中获取当前布局方向
+     * 反转 int 数组
      */
-    @RequiresApi(api = VERSION_CODES.JELLY_BEAN_MR1)
-    private static int getLayoutDirection(View view) {
-        int layoutDirection;
-        Context context = view.getContext();
-        Resources resources = null;
-        Configuration configuration = null;
-        if (context != null) {
-            resources = context.getResources();
+    public static int[] reverseArray(@NonNull int[] originalArray) {
+        int length = originalArray.length;
+        int[] newArray = new int[length];
+        for (int i = 0; i < length; i++) {
+            newArray[i] = originalArray[length - 1 - i];
         }
-        if (resources != null) {
-            configuration = resources.getConfiguration();
-        }
-        if (configuration != null) {
-            layoutDirection = configuration.getLayoutDirection();
+        return newArray;
+    }
+
+    static void saveCanvasLayer(Canvas canvas, float left, float top, float right, float bottom, @Nullable Paint paint) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            canvas.saveLayer(left, top, right, bottom, paint);
         } else {
-            layoutDirection = View.LAYOUT_DIRECTION_LTR;
+            canvas.saveLayer(left, top, right, bottom, paint, 0x04);
         }
-        return layoutDirection;
+    }
+
+    static float[] computeLinearGradientCoordinate(int layoutDirection, RectF r, float level, ShapeGradientOrientation orientation) {
+        float x0, x1, y0, y1;
+        switch (orientation) {
+            case START_TO_END:
+                return computeLinearGradientCoordinate(layoutDirection, r, level,
+                    layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                        ShapeGradientOrientation.RIGHT_TO_LEFT : ShapeGradientOrientation.LEFT_TO_RIGHT);
+            case END_TO_START:
+                return computeLinearGradientCoordinate(layoutDirection, r, level,
+                    layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                        ShapeGradientOrientation.LEFT_TO_RIGHT : ShapeGradientOrientation.RIGHT_TO_LEFT);
+            case TOP_START_TO_BOTTOM_END:
+                return computeLinearGradientCoordinate(layoutDirection, r, level,
+                    layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                        ShapeGradientOrientation.TOP_RIGHT_TO_BOTTOM_LEFT : ShapeGradientOrientation.TOP_LEFT_TO_BOTTOM_RIGHT);
+            case TOP_END_TO_BOTTOM_START:
+                return computeLinearGradientCoordinate(layoutDirection, r, level,
+                    layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                        ShapeGradientOrientation.TOP_LEFT_TO_BOTTOM_RIGHT : ShapeGradientOrientation.TOP_RIGHT_TO_BOTTOM_LEFT);
+            case BOTTOM_START_TO_TOP_END:
+                return computeLinearGradientCoordinate(layoutDirection, r, level,
+                    layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                        ShapeGradientOrientation.BOTTOM_RIGHT_TO_TOP_LEFT : ShapeGradientOrientation.BOTTOM_LEFT_TO_TOP_RIGHT);
+            case BOTTOM_END_TO_TOP_START:
+                return computeLinearGradientCoordinate(layoutDirection, r, level,
+                    layoutDirection == View.LAYOUT_DIRECTION_RTL ?
+                        ShapeGradientOrientation.BOTTOM_LEFT_TO_TOP_RIGHT : ShapeGradientOrientation.BOTTOM_RIGHT_TO_TOP_LEFT);
+            case TOP_TO_BOTTOM:
+                x0 = r.left;            y0 = r.top;
+                x1 = x0;                y1 = level * r.bottom;
+                break;
+            case TOP_RIGHT_TO_BOTTOM_LEFT:
+                x0 = r.right;           y0 = r.top;
+                x1 = level * r.left;    y1 = level * r.bottom;
+                break;
+            case RIGHT_TO_LEFT:
+                x0 = r.right;           y0 = r.top;
+                x1 = level * r.left;    y1 = y0;
+                break;
+            case BOTTOM_RIGHT_TO_TOP_LEFT:
+                x0 = r.right;           y0 = r.bottom;
+                x1 = level * r.left;    y1 = level * r.top;
+                break;
+            case BOTTOM_TO_TOP:
+                x0 = r.left;            y0 = r.bottom;
+                x1 = x0;                y1 = level * r.top;
+                break;
+            case BOTTOM_LEFT_TO_TOP_RIGHT:
+                x0 = r.left;            y0 = r.bottom;
+                x1 = level * r.right;   y1 = level * r.top;
+                break;
+            case LEFT_TO_RIGHT:
+                x0 = r.left;            y0 = r.top;
+                x1 = level * r.right;   y1 = y0;
+                break;
+            case TOP_LEFT_TO_BOTTOM_RIGHT:
+            default:
+                x0 = r.left;            y0 = r.top;
+                x1 = level * r.right;   y1 = level * r.bottom;
+                break;
+        }
+        return new float[] {x0, y0, x1, y1};
+    }
+
+    /**
+     * 设置颜色的透明度，参考 Support 包中的 ColorUtils.setAlphaComponent 方法
+     */
+    @ColorInt
+    public static int setColorAlphaComponent(@ColorInt int color,
+        @IntRange(from = 0x0, to = 0xFF) int alpha) {
+        if (alpha < 0 || alpha > 255) {
+            throw new IllegalArgumentException("alpha must be between 0 and 255.");
+        }
+        return (color & 0x00ffffff) | (alpha << 24);
     }
 }
