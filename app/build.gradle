@@ -59,7 +59,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     // 标题栏框架：https://github.com/getActivity/TitleBar
-    implementation 'com.github.getActivity:TitleBar:10.5'
+    implementation 'com.github.getActivity:TitleBar:10.8'
 
     // 吐司框架：https://github.com/getActivity/Toaster
     implementation 'com.github.getActivity:Toaster:12.5'
