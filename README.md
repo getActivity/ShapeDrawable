@@ -1,12 +1,14 @@
+# [English Doc](README-en.md)
+
 # ShapeDrawable 框架
 
 * 项目地址：[Github](https://github.com/getActivity/ShapeDrawable)
 
 * 可以扫码下载 Demo 进行演示或者测试，如果扫码下载不了的，[点击此处可直接下载](https://github.com/getActivity/ShapeDrawable/releases/download/3.3/ShapeDrawable.apk)
 
-![](picture/demo_code.png)
+![](picture/zh/demo_code.png)
 
-![](picture/long_screenshots.jpg)
+![](picture/zh/long_screenshots.jpg)
 
 #### 集成步骤
 
@@ -55,104 +57,104 @@ dependencies {
 
 ```java
 // 设置 Shape 形状
-setType(@ShapeTypeLimit int shape)
+setType(@ShapeTypeLimit int shape);
 
 // 设置 Shape 宽度
-setWidth(int width)
+setWidth(int width);
 
 // 设置 Shape 高度
-setHeight(int height)
+setHeight(int height);
 
 // 设置矩形的圆角大小
-setRadius(float radius)
-setRadius(float topLeftRadius, float topRightRadius, float bottomLeftRadius, float bottomRightRadius)
+setRadius(float radius);
+setRadius(float topLeftRadius, float topRightRadius, float bottomLeftRadius, float bottomRightRadius);
 ```
 
 * 填充色相关
 
 ```java
 // 设置填充色
-setSolidColor(@ColorInt int startColor, @ColorInt int endColor)
-setSolidColor(@ColorInt int startColor, @ColorInt int centerColor, @ColorInt int endColor)
-setSolidColor(@ColorInt int... colors)
+setSolidColor(@ColorInt int startColor, @ColorInt int endColor);
+setSolidColor(@ColorInt int startColor, @ColorInt int centerColor, @ColorInt int endColor);
+setSolidColor(@ColorInt int... colors);
 
 // 设置填充色渐变类型
-setSolidGradientType(@ShapeGradientTypeLimit int type)
+setSolidGradientType(@ShapeGradientTypeLimit int type);
 
 // 设置填充色渐变方向
-setSolidGradientOrientation(ShapeGradientOrientation orientation)
+setSolidGradientOrientation(ShapeGradientOrientation orientation);
 
 // 设置填充色渐变中心 X 点坐标的相对位置（默认值为 0.5）
-setSolidGradientCenterX(float centerX)
+setSolidGradientCenterX(float centerX);
 // 设置填充色渐变中心 Y 点坐标的相对位置（默认值为 0.5）
-setSolidGradientCenterY(float centerY)
+setSolidGradientCenterY(float centerY);
 
 // 设置填充色渐变半径大小
-setSolidGradientRadius(float radius)
+setSolidGradientRadius(float radius);
 ```
 
 * 边框色相关
 
 ```java
 // 设置边框色
-setStrokeColor(@ColorInt int startColor, @ColorInt int endColor)
-setStrokeColor(@ColorInt int startColor, @ColorInt int centerColor, @ColorInt int endColor)
-setStrokeColor(@ColorInt int... colors)
+setStrokeColor(@ColorInt int startColor, @ColorInt int endColor);
+setStrokeColor(@ColorInt int startColor, @ColorInt int centerColor, @ColorInt int endColor);
+setStrokeColor(@ColorInt int... colors);
 
 // 设置边框色渐变方向
-setStrokeGradientOrientation(ShapeGradientOrientation orientation)
+setStrokeGradientOrientation(ShapeGradientOrientation orientation);
 
 // 设置边框大小
-setStrokeSize(int size)
+setStrokeSize(int size);
 
 // 设置边框每一节虚线宽度
-setStrokeDashSize(float dashSize)
+setStrokeDashSize(float dashSize);
 // 设置边框虚线每一节间隔
-setStrokeDashGap(float dashGap)
+setStrokeDashGap(float dashGap);
 ```
 
 * 阴影相关
 
 ```java
 // 设置阴影颜色
-setShadowColor(@ColorInt int color)
+setShadowColor(@ColorInt int color);
 
 // 设置阴影大小
-setShadowSize(int size)
+setShadowSize(int size);
 
 // 设置阴影水平偏移
-setShadowOffsetX(int offsetX)
+setShadowOffsetX(int offsetX);
 
 // 设置阴影垂直偏移
-setShadowOffsetY(int offsetY)
+setShadowOffsetY(int offsetY);
 ```
 
 * 圆环相关
 
 ```java
 // 设置内环的半径大小
-setRingInnerRadiusSize(int size)
+setRingInnerRadiusSize(int size);
 // 设置内环的半径比率
-setRingInnerRadiusRatio(float ratio)
+setRingInnerRadiusRatio(float ratio);
 
 // 设置外环的厚度大小
-setRingThicknessSize(int size)
+setRingThicknessSize(int size);
 // 设置外环的厚度比率
-setRingThicknessRatio(float ratio)
+setRingThicknessRatio(float ratio);
 ```
 
 * 线条相关
 
 ```java
 // 设置线条重心
-setLineGravity(int lineGravity)
+setLineGravity(int lineGravity);
 ```
 
 * 其他的
 
 ```java
 // 将当前 Drawable 对象应用到 View 背景，需要调用此 API 设置到 View 背景，否则可能会导致虚线或者阴影无法生效
-intoBackground(View view)
+intoBackground(View view);
 ```
 
 #### 框架亮点
@@ -179,6 +181,8 @@ intoBackground(View view)
 
 * 悬浮窗框架：[EasyWindow](https://github.com/getActivity/EasyWindow) ![](https://img.shields.io/github/stars/getActivity/EasyWindow.svg) ![](https://img.shields.io/github/forks/getActivity/EasyWindow.svg)
 
+* 设备兼容框架：[DeviceCompat](https://github.com/getActivity/DeviceCompat) ![](https://img.shields.io/github/stars/getActivity/DeviceCompat.svg) ![](https://img.shields.io/github/forks/getActivity/DeviceCompat.svg)
+
 * ShapeView 框架：[ShapeView](https://github.com/getActivity/ShapeView) ![](https://img.shields.io/github/stars/getActivity/ShapeView.svg) ![](https://img.shields.io/github/forks/getActivity/ShapeView.svg)
 
 * 语种切换框架：[MultiLanguages](https://github.com/getActivity/MultiLanguages) ![](https://img.shields.io/github/stars/getActivity/MultiLanguages.svg) ![](https://img.shields.io/github/forks/getActivity/MultiLanguages.svg)
@@ -188,6 +192,8 @@ intoBackground(View view)
 * 日志查看框架：[Logcat](https://github.com/getActivity/Logcat) ![](https://img.shields.io/github/stars/getActivity/Logcat.svg) ![](https://img.shields.io/github/forks/getActivity/Logcat.svg)
 
 * 嵌套滚动布局框架：[NestedScrollLayout](https://github.com/getActivity/NestedScrollLayout) ![](https://img.shields.io/github/stars/getActivity/NestedScrollLayout.svg) ![](https://img.shields.io/github/forks/getActivity/NestedScrollLayout.svg)
+
+* Android 命令行工具集：[AndroidCmdTools](https://github.com/getActivity/AndroidCmdTools) ![](https://img.shields.io/github/stars/getActivity/AndroidCmdTools.svg) ![](https://img.shields.io/github/forks/getActivity/AndroidCmdTools.svg)
 
 * Android 版本适配：[AndroidVersionAdapter](https://github.com/getActivity/AndroidVersionAdapter) ![](https://img.shields.io/github/stars/getActivity/AndroidVersionAdapter.svg) ![](https://img.shields.io/github/forks/getActivity/AndroidVersionAdapter.svg)
 

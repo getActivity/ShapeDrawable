@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:leftIcon="@null"
-        app:title="https://github.com/getActivity/ShapeDrawable" />
+        app:title="@string/shape_drawable_github_url" />
 
     <FrameLayout
         android:id="@+id/v_main_example"
@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="改变形状"
+                    android:text="@string/change_shape"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="矩形"
+                        android:text="@string/shape_rectangle"
                         android:textSize="12sp" />
 
                     <Button
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆形"
+                        android:text="@string/shape_circle"
                         android:textSize="12sp" />
 
                     <Button
@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="线条"
+                        android:text="@string/shape_line"
                         android:textSize="12sp" />
 
                     <Button
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆环"
+                        android:text="@string/shape_ring"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="改变通用属性"
+                    android:text="@string/change_common_properties"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置 Drawable 宽度"
+                        android:text="@string/shape_drawable_width"
                         android:textSize="12sp" />
 
                     <Button
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置 Drawable 高度"
+                        android:text="@string/shape_drawable_height"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="改变矩形圆角选项"
+                    android:text="@string/change_rectangle_corner_options"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆角(左上)"
+                        android:text="@string/shape_corner_top_left"
                         android:textSize="12sp" />
 
                     <Button
@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆角(右上)"
+                        android:text="@string/shape_corner_top_right"
                         android:textSize="12sp" />
 
                     <Button
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆角(左下)"
+                        android:text="@string/shape_corner_bottom_left"
                         android:textSize="12sp" />
 
                     <Button
@@ -185,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆角(右下)"
+                        android:text="@string/shape_corner_bottom_right"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆角(全部)"
+                        android:text="@string/shape_corner_all"
                         android:textSize="12sp" />
 
                     <Button
@@ -213,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="圆角(无)"
+                        android:text="@string/shape_corner_none"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -222,7 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="改变填充色属性"
+                    android:text="@string/change_fill_color_properties"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -241,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置成纯色"
+                        android:text="@string/shape_solid_color"
                         android:textSize="12sp" />
 
                     <Button
@@ -250,7 +250,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置成渐变色"
+                        android:text="@string/shape_solid_gradient_color"
                         android:textSize="12sp" />
 
                     <Button
@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置渐变色方向"
+                        android:text="@string/shape_solid_gradient_orientation"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置线性渐变"
+                        android:text="@string/shape_solid_gradient_type_linear"
                         android:textSize="12sp" />
 
                     <Button
@@ -287,7 +287,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置径向渐变"
+                        android:text="@string/shape_solid_gradient_type_radial"
                         android:textSize="12sp" />
 
                     <Button
@@ -296,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置扫描渐变"
+                        android:text="@string/shape_solid_gradient_type_sweep"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -315,7 +315,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置渐变中心\n X 点坐标的相对位置（默认值为 0.5）"
+                        android:text="@string/shape_solid_gradient_center_x"
                         android:textSize="12sp" />
 
                     <Button
@@ -324,7 +324,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置渐变中心\n Y 点坐标的相对位置（默认值为 0.5）"
+                        android:text="@string/shape_solid_gradient_center_y"
                         android:textSize="12sp" />
 
                     <Button
@@ -333,7 +333,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置渐变色\n半径（仅用于径向渐变）"
+                        android:text="@string/shape_gradient_radius"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -342,7 +342,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="改变边框色属性"
+                    android:text="@string/change_stroke_properties"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -361,7 +361,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置成纯色"
+                        android:text="@string/shape_stroke_color"
                         android:textSize="12sp" />
 
                     <Button
@@ -370,7 +370,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置成渐变色"
+                        android:text="@string/shape_stroke_gradient_color"
                         android:textSize="12sp" />
 
                     <Button
@@ -379,7 +379,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置渐变色方向"
+                        android:text="@string/shape_stroke_gradient_orientation"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -398,7 +398,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置边框宽度"
+                        android:text="@string/shape_stroke_size"
                         android:textSize="12sp" />
 
                     <Button
@@ -407,7 +407,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置虚线边框"
+                        android:text="@string/shape_stroke_dash_gap"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -416,7 +416,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="改变阴影属性"
+                    android:text="@string/change_shadow_properties"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -436,7 +436,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置阴影颜色"
+                        android:text="@string/shape_shadow_color"
                         android:textSize="12sp" />
 
                     <Button
@@ -445,7 +445,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置阴影大小"
+                        android:text="@string/shape_shadow_size"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -464,7 +464,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置阴影水平偏移"
+                        android:text="@string/shape_shadow_horizontal"
                         android:textSize="12sp" />
 
                     <Button
@@ -473,7 +473,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置阴影垂直偏移"
+                        android:text="@string/shape_shadow_vertical"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -482,7 +482,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="改变圆环属性"
+                    android:text="@string/change_ring_properties"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -502,7 +502,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置内环的半径大小"
+                        android:text="@string/shape_ring_inner_radius"
                         android:textSize="12sp" />
 
                     <Button
@@ -511,7 +511,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置内环的半径比率"
+                        android:text="@string/shape_ring_inner_radius_ratio"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -530,7 +530,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置外环的厚度大小"
+                        android:text="@string/shape_ring_thickness_size"
                         android:textSize="12sp" />
 
                     <Button
@@ -539,7 +539,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="设置外环的厚度比率"
+                        android:text="@string/shape_ring_thickness_ratio"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -549,7 +549,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="改变线条重心"
+                    android:text="@string/change_line_gravity"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -569,7 +569,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="left"
+                        android:text="@string/shape_line_gravity_left"
                         android:textSize="12sp" />
 
                     <Button
@@ -578,7 +578,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="top"
+                        android:text="@string/shape_line_gravity_top"
                         android:textSize="12sp" />
 
                     <Button
@@ -587,7 +587,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="right"
+                        android:text="@string/shape_line_gravity_right"
                         android:textSize="12sp" />
 
                     <Button
@@ -596,7 +596,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="bottom"
+                        android:text="@string/shape_line_gravity_bottom"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -615,7 +615,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="start"
+                        android:text="@string/shape_line_gravity_start"
                         android:textSize="12sp" />
 
                     <Button
@@ -624,7 +624,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="center"
+                        android:text="@string/shape_line_gravity_center"
                         android:textSize="12sp" />
 
                     <Button
@@ -633,7 +633,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
-                        android:text="end"
+                        android:text="@string/shape_line_gravity_end"
                         android:textSize="12sp" />
 
                 </LinearLayout>

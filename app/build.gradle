@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.hjq.shape.drawable.demo"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 33
         versionName "3.3"
