@@ -62,5 +62,5 @@ dependencies {
     implementation 'com.github.getActivity:TitleBar:10.8'
 
     // 吐司框架：https://github.com/getActivity/Toaster
-    implementation 'com.github.getActivity:Toaster:12.5'
+    implementation 'com.github.getActivity:Toaster:15.0'
 }
