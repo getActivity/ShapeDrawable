@@ -2,7 +2,7 @@
 
 * Project address: [Github](https://github.com/getActivity/ShapeDrawable)
 
-* [Click here to download demo apk directly](https://github.com/getActivity/ShapeDrawable/releases/download/3.3/ShapeDrawable.apk)
+* [Click here to download demo apk directly](https://github.com/getActivity/ShapeDrawable/releases/download/5.0/ShapeDrawable.apk)
 
 ![](picture/en/long_screenshots.jpg)
 
@@ -43,7 +43,7 @@ android {
 
 dependencies {
     // ShapeDrawable: https://github.com/getActivity/ShapeDrawable
-    implementation 'com.github.getActivity:ShapeDrawable:3.3'
+    implementation 'com.github.getActivity:ShapeDrawable:5.0'
 }
 ```
 

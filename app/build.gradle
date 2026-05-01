@@ -7,8 +7,8 @@ android {
         applicationId "com.hjq.shape.drawable.demo"
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 33
-        versionName "3.3"
+        versionCode 50
+        versionName "5.0"
     }
 
     // Apk 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
